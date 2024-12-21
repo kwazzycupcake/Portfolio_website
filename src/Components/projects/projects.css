@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.project-parent {
+    margin-top: 80px;
+    margin-bottom: 70px;
+    background-color: #332b29;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-family: "Cabin", sans-serif;
+}
+  
+.proj-title h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: white;  
+}
+  
+.proj-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    color: #332b29;
+    font-size: 1.25em;
+    font-weight: 500;
+    line-height: 1.44;
+    margin-bottom: 80px;
+}
+  
+.proj {
+    width: 20%;
+    height: 440px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.proj h4{
+    font-style: italic;
+}
+
+.proj:nth-child(1){
+    background-color: #e7baad;
+}
+
+.proj:nth-child(2){
+    background-color: #8bdfdd;
+}
+
+.proj:nth-child(3){
+    background-color: #8ed993;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+.proj{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}

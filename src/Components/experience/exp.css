@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.exp-parent{
+    margin-top: 20px;
+    margin-bottom: 80px;
+    width: 1320px; /* Use max-width instead of width */
+    height: 539px;
+    margin: 0 auto;    /* Center the parent */
+    border-style: solid;
+    color: #332b29;
+    /* background-color: #c6bbd0; */
+    background-color: #8bdfdd;
+    border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "Cabin", sans-serif;
+    display: flex;                 /* Use Flexbox */
+    flex-direction: column;        /* Stack children vertically */
+    justify-content: center;        /* Center vertically */
+    align-items: center;    
+    color: #332b29;
+}
+
+.exp-section{
+    display: flex;               
+    justify-content: space-around;     
+    align-items: center;        
+    gap: 210px;  
+}
+
+.exp-title{
+    margin-left: 70px;
+    font-size: 2.2em;
+    font-weight: bold;
+}
+
+.exp-write-up{
+    margin-right: 70px;
+    color: #332b29;
+    font-size: 1.25em;
+    font-weight: 500;
+    line-height: 1.44;
+}
+
+.exp-write-up h3{
+    font-size: 2em;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+.exp-parent{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}

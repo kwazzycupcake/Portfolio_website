@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+nav {
+  margin-top: 40px;  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  
+}
+
+.title {
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    /* color: #f8ab41; */
+    color: #ffd876;
+    /* color: #ffd8cc; */
+    text-shadow: 5px 5px 0 #45496a, -1px -1px 0 #45496a, 1px -1px 0 #45496a,
+      -1px 1px 0 #45496a, 1px 1px 0 #45496a;  
+    cursor: pointer;
+}
+
+.options{
+    padding: 10px 7px 10px 0px;
+    border-style: solid;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 8px 8px #332b29;
+}
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  list-style-type: none;
+  margin: 0 22px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #332b29;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.options ul li a {
+  color: #332b29; 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.options ul li:nth-child(1) a:hover {
+  /* Styles for the 'Home' link */
+  color: #e7baad;
+}
+  
+.options ul li:nth-child(2) a:hover {
+  /* Styles for the 'About' link */
+  color: #8ed993;
+}
+  
+.options ul li:nth-child(3) a:hover {
+  /* Styles for the 'Projects' link */
+  color: #7ed0cf;
+}
+  
+.options ul li:nth-child(4) a:hover {
+  /* Styles for the 'Contact me' link */
+  color: #f8ab41;
+}
+
+.options ul li:nth-child(5) a:hover {
+  /* Styles for the 'Contact me' link */
+  color: #e7baad;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+

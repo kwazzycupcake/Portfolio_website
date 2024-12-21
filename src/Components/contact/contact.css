@@ -1,0 +1,97 @@
+.contact-parent{
+    width: 1200px;
+    height: 539px; 
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-style: solid;
+    color: #332b29;
+    border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "Cabin", sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.box{
+    width: 660px;
+    height: 539px;
+}
+
+.contact-title-form{
+    text-align: center;
+}
+.contact-title-form h2{
+    font-size: 2.5em;
+}
+  
+.contact-title-form form {
+    display: flex;
+    flex-direction: column; 
+    width: 70%; 
+    gap: 10px; 
+    margin-left: 80px;
+}
+
+.form-label {
+    font-size: 1.25em;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.form-field{
+    border: 2px solid black;
+    padding: 12px;
+}
+.is-area{
+    height: 70px;
+}
+
+.submit-button {
+    margin-top: 3px;
+    background-color: #332b29;
+    color: white;
+    width: 85px;
+    height: 45px;
+    font-weight: 600;
+    line-height: 1.44;
+    font-family: "Cabin", sans-serif;
+    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+
+.submit-button:hover {
+    box-shadow: 0 4px 10px rgba(51, 43, 41, 0.6); /* Box shadow on hover */
+}
+.submit-button:active {
+    box-shadow: 0 2px 5px rgba(51, 43, 41, 0.8); /* Slightly smaller shadow on click */
+    transform: scale(0.98); /* Slightly shrink the button on click to simulate pressing */
+}
+
+.photo{
+    background-color: #8ed993;
+    border-left: black;
+    border-style: solid;
+    justify-content: center;
+}
+
+.photo img{
+    height: 539px;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+.contact-parent{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}

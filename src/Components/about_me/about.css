@@ -1,0 +1,46 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+.about-me-parent{
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+.about-me{
+    width: 1320px;
+    height: 539px; 
+    margin: 0 auto;
+    border-style: solid;
+    color: #332b29;
+    background-color: #ffd8cc;
+    border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "Cabin", sans-serif;
+}
+.about-me-title{
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: bold;
+}
+.about-me-write-up{
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 2em;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+@keyframes appear {
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+.about-me{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}

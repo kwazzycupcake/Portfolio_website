@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+body{
+    background-color: #FAF9F6;
+    /* background-color: #f9f9f9; */
+}
+.main-div{
+    width:1400px;
+    height: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #332b29;
+}
+
+.text-div{
+    margin-left: 100px;
+    font-size: 3rem;
+    font-weight: 700;
+}
+.photo-div img {
+    width: 13.5cm;  
+    height: 13.5cm; 
+    border-radius: 50%;  
+    object-fit: cover; /* Ensures the image covers the entire circle area without distortion */
+}
+
+.buttons{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    font-family:"Cabin", sans-serif; 
+    color:#332b29;
+}
+.btn {
+    border-style: solid;
+    border-width: 2px; /* Set the border width explicitly */
+    width: 110px;
+    background-color: white;
+    font-size: medium;
+    font-weight: 700; /* Set the font weight explicitly */
+    padding: 1rem 1.67em;  
+    text-align: center; /* Center text inside the button */
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Use the same color as the parent */
+    border-color: #332b29; /* Add border color */
+    display: inline-block; /* Make the anchor behave like a block-level element */
+}
+
+.btn:nth-child(2){
+    width: 170px;
+}
+.btn:hover {
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+ 
+.btn:nth-child(1):hover {
+    background-color: #ffd876;
+    box-shadow: 8px 8px #332b29;
+}
+ 
+.btn:nth-child(2):hover {
+    background-color: #8bdfdd;
+    box-shadow: 8px 8px #332b29;
+}
+ 
