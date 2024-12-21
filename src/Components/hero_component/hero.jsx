@@ -31,7 +31,7 @@ const Hero = () => {
 
         <div className="buttons">
           <a href={resume} className="btn" target="_blank" rel="noopener noreferrer">Resume</a>
-          <button className="btn">Videos</button>
+          {/* <button className="btn">Videos</button> */}
         </div>
 
       </div>
