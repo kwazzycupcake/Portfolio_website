@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 body{
     background-color: #FAF9F6;
-    /* background-color: #f9f9f9; */
 }
 .main-div{
     width:1400px;
@@ -30,6 +29,7 @@ body{
     gap: 20px;
     font-family:"Cabin", sans-serif; 
     color:#332b29;
+    margin-bottom: 20px;
 }
 .btn {
     border-style: solid;
@@ -44,6 +44,7 @@ body{
     color: inherit; /* Use the same color as the parent */
     border-color: #332b29; /* Add border color */
     display: inline-block; /* Make the anchor behave like a block-level element */
+    background-color: #ffd876;
 }
 
 .btn:nth-child(2){
@@ -62,4 +63,89 @@ body{
     background-color: #8bdfdd;
     box-shadow: 8px 8px #332b29;
 }
- 
+
+/* Responsive Design */
+@media (max-width: 1396px) {
+    .photo-div img {
+        width: 12.5cm;  
+        height: 12.5cm; 
+        border-radius: 50%;  
+    }
+}
+@media (max-width: 1263px) {
+    .text-div{
+        font-size: 2.8rem;
+    }
+    .photo-div img {
+        width: 11cm;  
+        height: 11cm;  
+    }
+    .main-div{
+        width:1263px;
+    }  
+}
+
+@media (max-width: 1017px) {
+    .main-div{
+        width:1017px;
+    } 
+    .text-div{
+        font-size: 2.3rem;
+    }
+    .photo-div img {
+        width: 10cm;  
+        height: 10cm; 
+    } 
+}
+  
+@media (max-width: 905px) {
+    .main-div{
+        margin-top: 50px;
+        width:905px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .text-div{
+        font-size: 2.3rem;
+        margin-left: 0px;
+    }
+    .photo-div img {
+        width: 10cm;  
+        height: 10cm; 
+        margin-right: 100px;
+    }
+     
+}
+
+@media (max-width: 800px) {
+    .main-div{
+        width:800px;
+    } 
+}
+@media (max-width: 700px) {
+    .main-div{
+        width:700px;
+    } 
+}
+@media (max-width: 600px) {
+    .main-div{
+        width:600px;
+    }
+    .text-div{
+        font-size: 2rem;
+    }
+    .photo-div img {
+        width: 9cm;  
+        height: 9cm;
+    } 
+}
+@media (max-width: 500px) {
+    .main-div{
+        width:500px;
+    } 
+}
+@media (max-width: 400px) {
+    .main-div{
+        width:400px;
+    } 
+}

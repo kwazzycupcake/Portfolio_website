@@ -96,7 +96,7 @@ const Contact = () => {
       )
       .then(
         (response) => {
-          alert('Message sent successfully!');
+          alert("Thank you for reaching out! I'll get in touch with you soon" );
           setFormDetails({ name: '', email: '', message: '' });
         },
         (error) => {
