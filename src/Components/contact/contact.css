@@ -101,15 +101,18 @@
 }
 
 @media (max-width: 800px) {
+    .box{
+        width: auto;
+    }
     .contact-parent {
         flex-direction: column; 
-        padding: 10px;
-        height: 550px;
+        /* padding: 10px;
+        height: 550px; */
     }
 
-    .contact-title-form form {
+    /* .contact-title-form form {
         padding: 0 10px;
-    }
+    } */
     .photo{
         background-color: none;
         height: 0%;
@@ -118,5 +121,29 @@
     }
     .photo img {
         visibility: hidden;
+    }
+}
+@media (max-width: 799px) {
+    .contact-title-form form { 
+        margin-left: 0px; 
+    }
+    .form-field{
+        width: 400px;
+    }
+}
+@media (max-width: 490px) {
+    .contact-title-form form { 
+        margin-left: 0px; 
+    }
+    .form-field{
+        width: 300px;
+    }
+}
+@media (max-width: 400px) {
+    .contact-title-form h2{
+        font-size: 1.8em;
+    }
+    .form-field{
+        width: 200px;
     }
 }

@@ -6,7 +6,6 @@ nav {
   justify-content: space-around;
   align-items: center;
   height: 100px;
-  
 }
 
 .title {
@@ -107,7 +106,8 @@ html {
     position: absolute;
     right: 0;
     top: 60px;
-    background-color: #fef7e5;
+    /* background-color: #fef7e5; */
+    background-color: #faf9f6;
     width: 0px;
     height: calc(100vh - 60px);
     transition: all 0.3s ease-in-out; 
@@ -115,7 +115,7 @@ html {
     margin-top: 60px;
   }
   .options.active {
-    width: 150px;
+    width: 180px
   }
   .options ul {
     display: flex;
@@ -141,6 +141,12 @@ html {
 
 @media (max-width: 400px) {
   .title {
-    font-size: 26px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 370px) {
+  .title {
+    font-size: 22px;
   }
 }
