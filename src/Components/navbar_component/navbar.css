@@ -58,26 +58,13 @@ html {
 /* Responsive Design */
 @media (max-width: 1263px) {
   .title {
-    font-size: 45px;
-  }
-  .options{
-    padding: 8px 5px 8px 0px; 
-    box-shadow: 6px 6px #332b29; 
-  }
-  nav ul li {
-    margin: 0 15px;
-  }
-  nav ul li a {
-    font-size: 1.1rem;
+    font-size: 47px;
   }
 }
 
 @media (max-width: 1200px) {
-  .title {
-    font-size: 40px;
-  }
   .options{
-    padding: 7px 4px 7px 0px; 
+    padding: 8px 5px 8px 0px; 
     box-shadow: 5px 5px #332b29; 
     margin-left: 100px;
   }
@@ -85,13 +72,13 @@ html {
     margin: 0 13px;
   }
   nav ul li a {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 1017px) {
+@media (max-width: 1117px) {
   .title {
-    font-size: 33px;
+    font-size: 40px;
   }
   .options{
     padding: 5px 2px 5px 5px; 
@@ -101,16 +88,15 @@ html {
   nav ul li {
     margin: 0 10px;
   }
-
 }
 
-@media (max-width: 905px) {
+@media (max-width: 1040px) {
   .icon {
     display: block;
     cursor: pointer;
   }
   .title {
-    font-size: 27px;
+    font-size: 33px;
   }
   .options{
     padding: none;
@@ -143,18 +129,18 @@ html {
 }
 @media (max-width: 600px) {
   .title {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 
 @media (max-width: 500px) {
   .title {
-    font-size: 22px;
+    font-size: 26px;
   }
 }
 
 @media (max-width: 400px) {
   .title {
-    font-size: 20px;
+    font-size: 26px;
   }
 }

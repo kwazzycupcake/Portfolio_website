@@ -51,3 +51,86 @@
     color: #ffd876;
 }
 
+@media (max-width: 1390px) {
+    .skills{
+        width: 1250px;
+    }
+    .stack-title{
+        font-size: 3.2em;
+    }
+    
+}
+
+@media (max-width: 1270px) {
+    .skills{
+        width: 1100px;
+        height: 500px;
+    }
+    .stack-title{
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 1180px) {
+    .skills{
+        width: 1000px;
+        height: 450px;
+    }
+    .stack-title{
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 1000px) {
+    .skills{
+        width: 900px;
+        height: 400px;
+    }
+    .stack-title{
+        font-size: 2.8em;
+    } 
+    .stacks {
+        width: 120px;
+        height: 50px;
+        font-size: 1em;
+        margin: 8px;    
+    }
+}
+
+@media (max-width: 900px) {
+    .skills{
+        width: 800px;
+        height: 400px;
+    }
+    .stack-title{
+        font-size: 2.8em;
+    }
+}
+@media (max-width: 800px) {
+    .skills{
+        width: 700px;
+        height: 400px;
+    }
+    .stack-title{
+        font-size: 2.7em;
+    } 
+}
+
+@media (max-width: 717px) {
+    .skills{
+        width: auto;
+        height: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .lists {
+        grid-template-columns: repeat(3, 1fr); /* 4 elements per row */
+        margin-bottom: 10px;
+    }
+    .stacks {
+        width: 100px;
+        height: 45px;
+        font-size: 1em;
+        margin: 10px;    
+    }
+}

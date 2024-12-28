@@ -10,7 +10,7 @@ const Hero = () => {
 
   useEffect(() => {
     const typed = new Typed("#element", {
-      strings: ["passionate developer", "student", "video editor", "coder", "culinary enthusiast"],
+      strings: ["developer", "student", "video editor", "coder"],
       typeSpeed: 50,
     });
 
@@ -27,7 +27,6 @@ const Hero = () => {
         <div>and I am a</div>
         <span id="element"></span>
 
-        
 
         <div className="buttons">
           <a href={resume} className="btn" target="_blank" rel="noopener noreferrer">Resume</a>
@@ -38,7 +37,6 @@ const Hero = () => {
 
       <div className="photo-div">
         <img src={photo2} alt="meri photo" />
-        {/* <img src={photo} alt="meri photo" /> */}
       </div>
     </div>
   );

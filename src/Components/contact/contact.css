@@ -79,3 +79,44 @@
 .photo img{
     height: 539px;
 }
+
+
+@media (max-width: 1270px) {
+    .contact-parent{
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+    }   
+}
+
+@media (max-width: 1180px) {
+    .photo img{
+        width: 500px;;
+    }
+}
+@media (max-width: 900px) {
+    .photo img{
+        width: 450px;
+    }
+}
+
+@media (max-width: 800px) {
+    .contact-parent {
+        flex-direction: column; 
+        padding: 10px;
+        height: 550px;
+    }
+
+    .contact-title-form form {
+        padding: 0 10px;
+    }
+    .photo{
+        background-color: none;
+        height: 0%;
+        border-left: none;
+        border-style: none;
+    }
+    .photo img {
+        visibility: hidden;
+    }
+}

@@ -1,4 +1,7 @@
-/* Apply global text selection style */
+
+/* *{
+    background-color: #fefae0;
+} */
 ::selection {
     background-color: #332b29;  /* Black background for selected text */
     color: white;             /* White text color */
