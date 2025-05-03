@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./hero.css";
 // import photo2 from './photo.png';
 import photo2 from './photo4.png';
+import moksha from './moksha.png'
 // import photo2 from './me.JPG';
 import Typed from 'typed.js';
 import resume from './resume.pdf'; // Update this path to where your resume is stored
@@ -36,7 +37,7 @@ const Hero = () => {
       </div>
 
       <div className="photo-div">
-        <img src={photo2} alt="meri photo" />
+        <img src={moksha} alt="meri photo" />
       </div>
     </div>
   );

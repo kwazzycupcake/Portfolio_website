@@ -11,7 +11,7 @@ class Skills extends React.Component {
             <div className='stacks'><span>C++</span></div>
             <div className='stacks'><span>Java</span></div>
             <div className='stacks'><span>Python</span></div>
-            <div className='stacks'><span>HTML</span></div>
+            <div className='stacks'><span>Kotlin</span></div>
             <div className='stacks'><span>CSS</span></div>
             <div className='stacks'><span>Javascript</span></div>
             <div className='stacks'><span>React</span></div>
@@ -20,6 +20,10 @@ class Skills extends React.Component {
             <div className='stacks'><span>AWS</span></div>
             <div className='stacks'><span>Docker</span></div>
             <div className='stacks'><span>Git</span></div>
+            <div className='stacks'><span>Android</span></div>
+            <div className='stacks'><span>HTML</span></div>
+            <div className='stacks'><span>Postman</span></div>
+            <div className='stacks'><span>Firebase</span></div>
           </div>
         </div>
       </div>
