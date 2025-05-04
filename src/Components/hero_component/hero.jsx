@@ -5,7 +5,8 @@ import photo2 from './photo4.png';
 import moksha from './moksha.png'
 // import photo2 from './me.JPG';
 import Typed from 'typed.js';
-import resume from './resume.pdf'; // Update this path to where your resume is stored
+import resume from './resume.pdf';
+import resume2 from './Resume_Himanshi.pdf'
 
 const Hero = () => {
 
@@ -30,7 +31,7 @@ const Hero = () => {
 
 
         <div className="buttons">
-          <a href={resume} className="btn" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href={resume2} className="btn" target="_blank" rel="noopener noreferrer">Resume</a>
           {/* <button className="btn">Videos</button> */}
         </div>
 
