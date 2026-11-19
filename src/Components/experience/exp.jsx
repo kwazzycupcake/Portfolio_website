@@ -5,7 +5,7 @@ import "./exp.css";
 const JOBS = [
   {
     title: "Software Developer",
-    company: "ADOBE · LEARNING MANAGER",
+    company: "ADOBE",
     date: "Aug 2025 – Present",
     current: true,
     color: "#8ed993",
