@@ -1,149 +1,365 @@
-.contact-parent{
-    width: 1200px;
-    height: 539px; 
-    margin: 0 auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    border-style: solid;
-    color: #332b29;
-    border-color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: "Cabin", sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-}
-.box{
-    width: 660px;
-    height: 539px;
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+.contact-parent {
+  width: min(1100px, calc(100% - 40px));
+  margin: 40px auto 170px; /* extra breathing room before the footer */
+  color: #332b29;
+  font-family: "Cabin", sans-serif;
 }
 
-.contact-title-form{
-    text-align: center;
-}
-.contact-title-form h2{
-    font-size: 2.5em;
-}
-  
-.contact-title-form form {
-    display: flex;
-    flex-direction: column; 
-    width: 70%; 
-    gap: 10px; 
-    margin-left: 80px;
+.contact-heading {
+  margin: 0 0 32px;
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
-.form-label {
-    font-size: 1.25em;
-    font-weight: 600;
-    text-align: left;
-    margin-bottom: 3px;
-    margin-top: 3px;
+.contact-hl {
+  background: linear-gradient(#ffd8cc, #ffd8cc) no-repeat 0 88% / 100% 34%;
 }
-.form-field{
-    border: 2px solid black;
-    padding: 12px;
+
+/* ---------- The postcard ---------- */
+.postcard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-areas:
+    "message address"
+    "message send";
+  grid-template-rows: 1fr auto;
+  padding: 36px;
+  background: #fffdf7;
+  border: 3px solid #332b29;
+  border-radius: 6px;
+  box-shadow: 10px 10px 0 #332b29;
+  /* drops in and settles at a slight tilt */
+  opacity: 0;
+  /* no starting tilt, so the card never pokes past the screen edge on phones */
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.2, 1.3, 0.4, 1);
 }
-.is-area{
-    height: 70px;
+
+.postcard.visible {
+  opacity: 1;
+  transform: rotate(-0.6deg);
+}
+
+.postcard-tape {
+  position: absolute;
+  z-index: 2;
+  width: 110px;
+  height: 30px;
+  rotate: -32deg;
+  background: rgba(255, 216, 118, 0.85);
+  border: 2px dashed rgba(51, 43, 41, 0.3);
+}
+.postcard-tape.left { top: -14px; left: -22px; }
+.postcard-tape.right { bottom: -14px; right: -22px; }
+
+.postcard label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Message on lined paper */
+.postcard-message {
+  grid-area: message;
+  padding-right: 36px;
+  border-right: 2px solid rgba(51, 43, 41, 0.25);
+}
+
+.postcard-message textarea {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  padding: 4px 2px;
+  resize: vertical;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.15rem;
+  line-height: 40px;
+  color: #332b29;
+  background: repeating-linear-gradient(transparent 0 38px, rgba(51, 43, 41, 0.18) 38px 40px);
+  border: none;
+  outline: none;
+}
+
+/* Stamp + address lines */
+.postcard-address {
+  grid-area: address;
+  display: flex;
+  flex-direction: column;
+  padding-left: 36px;
+}
+
+.postcard-stamp {
+  align-self: flex-end;
+  width: 124px;
+  margin-bottom: 26px;
+  padding: 8px;
+  background: #ffd8cc;
+  border: 6px solid #fff;
+  outline: 3px dashed #332b29;
+  outline-offset: -6px;
+  box-shadow: 0 0 0 2px #332b29;
+  rotate: 4deg;
+  transition: rotate 0.3s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+
+.postcard-stamp:hover {
+  rotate: -4deg;
+}
+
+.postcard-stamp img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.postcard-to {
+  margin-bottom: 20px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  opacity: 0.75;
+}
+
+.postcard-field {
+  margin-bottom: 18px;
+}
+
+.postcard-field input {
+  width: 100%;
+  padding: 8px 2px;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.05rem;
+  color: #332b29;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #332b29;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.postcard-field input:focus {
+  border-color: #3f9a47;
+}
+
+/* Send button (same press style as the navbar buttons) */
+.postcard-send {
+  grid-area: send;
+  padding-left: 36px;
 }
 
 .submit-button {
-    margin-top: 3px;
-    background-color: #332b29;
-    color: white;
-    width: 85px;
-    height: 45px;
-    font-weight: 600;
-    line-height: 1.44;
-    font-family: "Cabin", sans-serif;
-    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+  padding: 12px 26px;
+  font-family: "Cabin", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #332b29;
+  background: #ffd876;
+  border: 3px solid #332b29;
+  box-shadow: 5px 5px 0 #332b29;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .submit-button:hover {
-    box-shadow: 0 4px 10px rgba(51, 43, 41, 0.6); /* Box shadow on hover */
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #332b29;
 }
+
 .submit-button:active {
-    box-shadow: 0 2px 5px rgba(51, 43, 41, 0.8); /* Slightly smaller shadow on click */
-    transform: scale(0.98); /* Slightly shrink the button on click to simulate pressing */
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 #332b29;
 }
 
-.photo{
-    background-color: #8ed993;
-    border-left: black;
-    border-style: solid;
-    justify-content: center;
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
-.photo img{
-    height: 539px;
+/* ---------- Pop-up after sending (covers the postcard) ---------- */
+.postcard-popup {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 24px;
+  text-align: center;
+  background: rgba(255, 253, 247, 0.96);
+  border-radius: 4px;
+  overflow: hidden;
+  animation: popup-in 0.35s ease both;
 }
 
-
-@media (max-width: 1270px) {
-    .contact-parent{
-        width: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }   
+@keyframes popup-in {
+  from { opacity: 0; }
 }
 
-@media (max-width: 1180px) {
-    .photo img{
-        width: 500px;;
-    }
+.postcard-popup h3 {
+  margin: 18px 0 8px;
+  font-size: 2rem;
 }
+
+.postcard-popup p {
+  max-width: 420px;
+  margin: 0 0 22px;
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+/* Close (×) in the top-right corner, same bordered style as the menu button */
+.popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0 0 3px;
+  font-family: "Cabin", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #332b29;
+  background: #fff;
+  border: 3px solid #332b29;
+  box-shadow: 3px 3px 0 #332b29;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+}
+
+.popup-close:hover {
+  background: #ffd8cc;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #332b29;
+}
+
+.popup-close:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 #332b29;
+}
+
+/* Rubber stamp that thumps down */
+.popup-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border: 5px double var(--ink-c, #3f8f47);
+  border-radius: 50%;
+  color: var(--ink-c, #3f8f47);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  rotate: -12deg;
+  animation: stamp-down 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) 0.1s both;
+}
+
+.popup-stamp span {
+  font-size: 1.05rem;
+  letter-spacing: 3px;
+}
+
+.popup-stamp b {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.postcard-popup.error .popup-stamp {
+  --ink-c: #c0614a;
+}
+
+.postcard-popup.error .popup-stamp span {
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+}
+
+@keyframes stamp-down {
+  from { transform: scale(2.2); opacity: 0; }
+}
+
+/* Little pastel confetti burst on success */
+.popup-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.popup-confetti i {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: hsl(calc(var(--i) * 52deg) 70% 78%);
+  border: 1.5px solid #332b29;
+  opacity: 0;
+  animation: confetti 1.1s ease-out 0.25s both;
+  --a: calc(var(--i) * 25.7deg);
+}
+
+@keyframes confetti {
+  0% { opacity: 1; transform: rotate(var(--a)) translateY(0) rotate(0); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(-150px) rotate(240deg); }
+}
+
+/* ---------- Tablets ---------- */
 @media (max-width: 900px) {
-    .photo img{
-        width: 450px;
-    }
+  .contact-heading { font-size: 2.5rem; }
+  .postcard { padding: 28px; }
+  .postcard-message { padding-right: 24px; }
+  .postcard-address, .postcard-send { padding-left: 24px; }
+  .postcard-stamp { width: 104px; }
 }
 
-@media (max-width: 800px) {
-    .box{
-        width: auto;
-    }
-    .contact-parent {
-        flex-direction: column; 
-        /* padding: 10px;
-        height: 550px; */
-    }
+/* ---------- Phones: address on top, then the message, then the button ---------- */
+@media (max-width: 680px) {
+  .contact-parent {
+    width: calc(100% - 32px);
+    margin: 30px auto 120px;
+  }
+  .contact-heading { font-size: 2.2rem; margin-bottom: 24px; }
+  .postcard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "address"
+      "message"
+      "send";
+    padding: 22px 18px;
+    box-shadow: 6px 6px 0 #332b29;
+  }
+  .postcard.visible { transform: none; }
+  .postcard-tape { width: 84px; height: 26px; }
+  .postcard-tape.left { left: -14px; }
+  .postcard-tape.right { right: -14px; }
+  .postcard-address { padding: 0 0 6px; }
+  .postcard-stamp { width: 90px; margin-bottom: 12px; }
+  .postcard-message {
+    padding: 14px 0 18px;
+    border-right: none;
+    border-top: 2px solid rgba(51, 43, 41, 0.25);
+  }
+  .postcard-message textarea { min-height: 200px; font-size: 1.05rem; }
+  .postcard-send { padding-left: 0; }
+  .popup-stamp { width: 104px; height: 104px; }
+  .popup-stamp b { font-size: 2rem; }
+  .postcard-popup h3 { font-size: 1.6rem; }
+  .postcard-popup p { font-size: 1.02rem; }
+}
 
-    /* .contact-title-form form {
-        padding: 0 10px;
-    } */
-    .photo{
-        background-color: none;
-        height: 0%;
-        border-left: none;
-        border-style: none;
-    }
-    .photo img {
-        visibility: hidden;
-    }
-}
-@media (max-width: 799px) {
-    .contact-title-form form { 
-        margin-left: 0px; 
-    }
-    .form-field{
-        width: 400px;
-    }
-}
-@media (max-width: 490px) {
-    .contact-title-form form { 
-        margin-left: 0px; 
-    }
-    .form-field{
-        width: 300px;
-    }
-}
-@media (max-width: 400px) {
-    .contact-title-form h2{
-        font-size: 1.8em;
-    }
-    .form-field{
-        width: 200px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .postcard { transition: none; opacity: 1; transform: rotate(-0.6deg); }
+  .postcard-popup, .popup-stamp, .popup-confetti i { animation: none; }
+  .popup-confetti { display: none; }
 }

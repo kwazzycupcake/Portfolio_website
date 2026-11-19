@@ -1,144 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
-.about-me-parent{
-    margin-top: 20px;
-    margin-bottom: 60px;
-}
-.about-me{
-    width: 1320px;
-    height: 539px; 
-    margin: 0 auto;
-    border-style: solid;
-    color: #332b29;
-    background-color: #ffd8cc;
-    border-color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: "Cabin", sans-serif;
-}
-.about-me-title{
-    text-align: center;
-    font-size: 3.5em;
-    font-weight: bold;
-}
-.about-me-write-up{
-    text-align: center;
-    line-height: 1.5;
-    font-size: 2em;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-weight: 500;
-    line-height: 1.44;
+.about-me-parent {
+  width: min(1100px, calc(100% - 40px));
+  margin: 40px auto 100px;
 }
 
-
-@media (max-width: 1390px) {
-    .about-me{
-        width: 1250px;
-        height: 439px;
-    }
-    .about-me-title{
-        text-align: center;
-        font-size: 3.2em;
-    }
-    .about-me-write-up{
-        text-align: center;
-        font-size: 1.8em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    
+/* ---------- The "app window" ---------- */
+.about-window {
+  position: relative;
+  background: #fff;
+  border: 3px solid #332b29;
+  border-radius: 16px;
+  box-shadow: 10px 10px 0 #332b29;
+  color: #332b29;
+  font-family: "Cabin", sans-serif;
+  /* starts lowered and invisible, rises in when scrolled to */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
-@media (max-width: 1270px) {
-    .about-me{
-        width: 1100px;
-        height: 400px;
-    }
-    .about-me-title{
-        text-align: center;
-        font-size: 3.2em;
-    }
-    .about-me-write-up{
-        text-align: center;
-        font-size: 1.8em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    
+.about-window.visible {
+  opacity: 1;
+  transform: none;
 }
 
-@media (max-width: 1180px) {
-    .about-me{
-        width: 1000px;
-        height: 300px;
-    }
-    .about-me-title{
-        text-align: center;
-        font-size: 3em;
-    }
-    .about-me-write-up{
-        text-align: center;
-        font-size: 1.2em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }   
+/* Piece of tape holding the window to the page (matches the hero polaroid) */
+.about-tape {
+  position: absolute;
+  top: -18px;
+  right: 48px;
+  z-index: 2;
+  width: 120px;
+  height: 32px;
+  rotate: 5deg;
+  background: rgba(255, 216, 118, 0.85);
+  border: 2px dashed rgba(51, 43, 41, 0.3);
 }
 
-@media (max-width: 1000px) {
-    .about-me{
-        width: 900px;
-        height: 250px;
-    }
-    .about-me-title{
-        text-align: center;
-        font-size: 2.7em;
-    }
-    .about-me-write-up{
-        text-align: center;
-        font-size: 1.1em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }  
+.about-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #ffd8cc;
+  border-bottom: 3px solid #332b29;
+  border-radius: 13px 13px 0 0;
 }
 
+.about-window-bar i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #332b29;
+}
+.about-window-bar i:nth-child(1) { background: #f28b82; }
+.about-window-bar i:nth-child(2) { background: #ffd876; }
+.about-window-bar i:nth-child(3) { background: #8ed993; }
+
+.about-window-bar span {
+  margin-left: 12px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.about-window-body {
+  padding: 50px 60px 54px;
+}
+
+/* ---------- Text ---------- */
+.about-me-title {
+  margin: 0 0 22px;
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+/* keeps the blinking cursor on the same line as "yours truly" */
+.about-nowrap {
+  white-space: nowrap;
+}
+
+.about-hl {
+  background: linear-gradient(#ffd876, #ffd876) no-repeat 0 88% / 100% 34%;
+}
+
+.about-cursor {
+  display: inline-block;
+  width: 12px;
+  height: 1em;
+  margin-left: 6px;
+  vertical-align: -0.1em;
+  background: #332b29;
+  animation: about-blink 1s steps(1) infinite;
+}
+
+@keyframes about-blink {
+  50% { opacity: 0; }
+}
+
+.about-me-write-up {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+/* ---------- Tablets ---------- */
 @media (max-width: 900px) {
-    .about-me{
-        width: 800px;
-        height: 300px;
-    }
-    .about-me-title{
-        text-align: center;
-        font-size: 2.5em;
-    }
-    .about-me-write-up{
-        text-align: center;
-        font-size: 1em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }  
-}
-@media (max-width: 800px) {
-    .about-me{
-        width: 700px;
-        height: 300px;
-    }
+  .about-me-title { font-size: 2.5rem; }
+  .about-me-write-up { font-size: 1.15rem; }
+  .about-window-body { padding: 40px 40px 44px; }
 }
 
-@media (max-width: 717px) {
-    .about-me-parent{
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .about-me{
-        width: auto;
-        height: auto;
-    }
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .about-me-parent {
+    width: calc(100% - 32px);
+    margin: 30px auto 70px;
+  }
+  .about-window { box-shadow: 6px 6px 0 #332b29; }
+  .about-window-bar { padding: 12px 14px; gap: 8px; }
+  .about-window-bar i { width: 13px; height: 13px; }
+  .about-window-bar span { margin-left: 8px; font-size: 0.85rem; }
+  .about-tape { width: 84px; height: 26px; right: 24px; top: -14px; }
+  .about-window-body { padding: 28px 20px 32px; }
+  .about-me-title { font-size: 2rem; margin-bottom: 16px; }
+  .about-cursor { width: 9px; }
+  .about-me-write-up { font-size: 1.05rem; line-height: 1.65; }
 }
-@media (max-width: 400px) {
-    .about-me-title{
-        font-size: 2.2em;
-    }
-    .about-me-write-up{
-        font-size: 0.8em;
-    } 
+
+@media (prefers-reduced-motion: reduce) {
+  .about-window { transition: none; opacity: 1; transform: none; }
+  .about-cursor { animation: none; }
 }

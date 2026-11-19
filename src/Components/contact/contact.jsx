@@ -1,72 +1,6 @@
-// import React, { useState } from 'react';
-// import "./contact.css";
-// import cake from './cake.png';
-
-// const Contact = () => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [textarea, setTextarea] = useState(""); // Add state for textarea
-
-//   const handleChange = (e) => {
-//     setTextarea(e.target.value); // Update textarea state on change
-//   };
-
-//   return (
-//     <div className='contact-parent'>
-//       <div className='box contact-title-form'>
-//         <h2>Reach out to me!</h2>
-//         {/* <form>
-//           <label>
-//             Name:
-//             <input
-//               type="text"
-//               value={name}
-//               onChange={(e) => setName(e.target.value)}
-//             />
-//           </label>
-//           <label>
-//             Email:
-//             <input
-//               type="text"
-//               value={email}  // Use the correct state for email
-//               onChange={(e) => setEmail(e.target.value)} // Update email state
-//             />
-//           </label>
-//           <label htmlFor="message">Your message</label>
-//           <textarea
-//             value={textarea}
-//             placeholder="What brings you here?"
-//             onChange={handleChange} // Call handleChange for textarea
-//           />
-//           <input type="submit" />
-//         </form> */}
-//         <form>
-//             <label for="lastname" class="form-label">Your name</label>
-//             <input type="text" name="lastname" required id="lastname" placeholder="Ivy" class="form-field"></input>
-
-//             <label for="email" class="form-label">Your email</label>
-//             <input type="email" name="email" required id="email" placeholder="name@example.com" class="form-field"></input>
-
-//             <label for="message"class="form-label">Your message</label>
-//             <textarea name="message" id="message" placeholder="Tell me what brings you here..." class="form-field is-area"></textarea>
-
-//             <button type="submit" className="submit-button">Send</button>
-//         </form>
-//       </div>
-
-//       <div className='box photo'>
-//         <img src={cake} alt="cake" />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Contact;
-
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
 import "./contact.css";
-// import cake from './cupcake.png';
 import cake from './cake.png';
 
 const Contact = () => {
@@ -75,6 +9,31 @@ const Contact = () => {
     email: '',
     message: '',
   });
+  const [sending, setSending] = useState(false);
+  // null | "sent" | "error" — shows the pop-up on top of the postcard
+  const [result, setResult] = useState(null);
+  const cardRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  // Postcard drops onto the page the first time it scrolls into view
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || !("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,73 +45,142 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSending(true);
 
     emailjs
       .send(
-        'service_0msie7k', // Replace with your Email.js service ID
-        'template_utk3bxv', // Replace with your Email.js template ID
-        formDetails,
-        '6FCAW8n3Y5RsghDUI' // Replace with your Email.js public key
+        'service_0msie7k', // Email.js service ID
+        'template_utk3bxv', // Email.js template ID
+        {
+          ...formDetails, // {{name}}, {{email}}, {{message}}
+          // the same details under the names EmailJS templates usually use,
+          // so {{reply_to}} / {{from_email}} work and "Reply" goes to the visitor
+          from_name: formDetails.name,
+          from_email: formDetails.email,
+          reply_to: formDetails.email,
+        },
+        '6FCAW8n3Y5RsghDUI' // Email.js public key
       )
       .then(
-        (response) => {
-          alert("Thank you for reaching out! I'll get in touch with you soon" );
+        () => {
+          setResult("sent");
           setFormDetails({ name: '', email: '', message: '' });
         },
         (error) => {
           console.error('Failed to send message:', error);
-          alert('Failed to send message. Please try again later.');
+          // keep what they wrote so they can just try again
+          setResult("error");
         }
-      );
+      )
+      .finally(() => setSending(false));
   };
 
   return (
-    <div className='contact-parent'>
-      <div className='box contact-title-form'>
-        <h2>Reach out to me!</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name" className="form-label">Your name</label>
-          <input
-            type="text"
-            name="name"
-            required
-            id="name"
-            placeholder="Ivy"
-            className="form-field"
-            value={formDetails.name}
-            onChange={handleChange}
-          />
+    <div className="contact-parent">
+      <h2 className="contact-heading reveal-heading">
+        Reach out to <span className="contact-hl hl-swipe">me!</span>
+      </h2>
 
-          <label htmlFor="email" className="form-label">Your email</label>
-          <input
-            type="email"
-            name="email"
-            required
-            id="email"
-            placeholder="name@example.com"
-            className="form-field"
-            value={formDetails.email}
-            onChange={handleChange}
-          />
+      <form className={`postcard ${visible ? "visible" : ""}`} ref={cardRef} onSubmit={handleSubmit}>
+        <span className="postcard-tape left" aria-hidden="true"></span>
+        <span className="postcard-tape right" aria-hidden="true"></span>
 
-          <label htmlFor="message" className="form-label">Your message</label>
+        {/* Left side: the message, written on lined paper */}
+        <div className="postcard-message">
+          <label htmlFor="message">Your message</label>
           <textarea
             name="message"
-            required
             id="message"
+            required
             placeholder="Tell me what brings you here..."
-            className="form-field is-area"
             value={formDetails.message}
             onChange={handleChange}
           />
+        </div>
 
-          <button type="submit" className="submit-button">Send</button>
-        </form>
-      </div>
+        {/* Right side: stamp + address lines */}
+        <div className="postcard-address">
+          <div className="postcard-stamp">
+            <img src={cake} alt="" />
+          </div>
+          <div className="postcard-to">To: Himanshi Prakash</div>
 
-      <div className='box photo'>
-        <img src={cake} alt="cake" />
-      </div>
+          <div className="postcard-field">
+            <label htmlFor="name">From</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              placeholder="Your name"
+              value={formDetails.name}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="postcard-field">
+            <label htmlFor="email">Your email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              placeholder="name@example.com"
+              value={formDetails.email}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        {/* Pop-up shown on top of the postcard after sending */}
+        {result && (
+          <div className={`postcard-popup ${result}`} role="status" aria-live="polite">
+            <button
+              type="button"
+              className="popup-close"
+              aria-label="Close"
+              onClick={() => setResult(null)}
+            >
+              ×
+            </button>
+            {result === "sent" && (
+              <div className="popup-confetti" aria-hidden="true">
+                {Array.from({ length: 14 }).map((_, i) => (
+                  <i key={i} style={{ "--i": i }}></i>
+                ))}
+              </div>
+            )}
+            <div className="popup-stamp" aria-hidden="true">
+              {result === "sent" ? (
+                <>
+                  <span>SENT</span>
+                  <b>✓</b>
+                </>
+              ) : (
+                <>
+                  <span>RETURNED</span>
+                  <b>!</b>
+                </>
+              )}
+            </div>
+            <h3>{result === "sent" ? "Postcard sent!" : "Oops, that didn't go through"}</h3>
+            <p>
+              {result === "sent"
+                ? "Thank you for reaching out! I'll get back to you soon."
+                : "Something went wrong while sending. Your message is still here, so please try again in a bit."}
+            </p>
+            <button type="button" className="submit-button" onClick={() => setResult(null)}>
+              {result === "sent" ? "Write another ✎" : "Try again"}
+            </button>
+          </div>
+        )}
+
+        <div className="postcard-send">
+          <button type="submit" className="submit-button" disabled={sending}>
+            {sending ? "Posting..." : "Post it ✉"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

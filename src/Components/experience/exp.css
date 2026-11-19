@@ -1,162 +1,213 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
-.exp-parent{
-    margin-top: 20px;
-    margin-bottom: 80px;
-    width: 1320px; /* Use max-width instead of width */
-    height: 700px;
-    margin: 0 auto;    /* Center the parent */
-    border-style: solid;
-    color: #332b29;
-    /* background-color: #c6bbd0; */
-    background-color: #8bdfdd;
-    border-color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: "Cabin", sans-serif;
-    display: flex;                 /* Use Flexbox */
-    flex-direction: column;        /* Stack children vertically */
-    justify-content: center;        /* Center vertically */
-    align-items: center;    
-    color: #332b29;
+.exp-parent {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto 100px;
+  color: #332b29;
+  font-family: "Cabin", sans-serif;
 }
 
-.exp-section{
-    display: flex;               
-    justify-content: space-around;     
-    align-items: center;        
-    gap: 210px;  
+.exp-heading {
+  margin: 0 0 32px;
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
-.exp-title{
-    margin-left: 70px;
-    font-size: 2.2em;
-    font-weight: bold;
+.exp-hl {
+  background: linear-gradient(#8bdfdd, #8bdfdd) no-repeat 0 88% / 100% 34%;
 }
 
-.exp-write-up{
-    margin-right: 70px;
-    color: #332b29;
-    font-size: 1.25em;
-    font-weight: 500;
-    line-height: 1.44;
+/* ---------- Timeline line + dots ---------- */
+.exp-timeline {
+  position: relative;
+  padding-left: 56px;
 }
 
-.exp-write-up h3{
-    font-size: 2em;
+.exp-timeline::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 4px;
+  background: #332b29;
 }
 
-@media (max-width: 1390px) {
-    .exp-parent{
-        width: 1250px;
-        height: 439px;
-    }
-    .exp-title{
-        font-size: 2.1em;
-    }
-    .exp-write-up{
-        font-size: 1.2rem;
-    } 
+.exp-item {
+  position: relative;
+  margin-bottom: 28px;
+  /* rise in one after another */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
+  transition-delay: calc(var(--i) * 0.12s);
+}
+.exp-item:last-child { margin-bottom: 0; }
+
+.exp-parent.visible .exp-item {
+  opacity: 1;
+  transform: none;
 }
 
-@media (max-width: 1270px) {
-    .exp-parent{
-        width: 1100px;
-        height: 400px;
-    }
-    .exp-title{
-        font-size: 2em;
-    }
-    .exp-write-up{
-        font-size: 1rem;
-    } 
+.exp-item::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 3px solid #332b29;
+  box-sizing: border-box;
 }
 
-@media (max-width: 1180px) {
-    .exp-parent{
-        width: 1000px;
-        height: 300px;
-    }
-    .exp-title{
-        font-size: 1.8em;
-    }
-    .exp-write-up{
-        font-size: 0.8rem;
-    } 
+/* Pulsing ring on the current job's dot */
+.exp-item.current::after {
+  content: "";
+  position: absolute;
+  left: -53px;
+  top: 21px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid var(--c);
+  box-sizing: border-box;
+  animation: exp-ring 1.8s infinite;
 }
 
-@media (max-width: 1000px) {
-    .exp-parent{
-        width: 900px;
-        height: 250px;
-    }
-    .exp-title{
-        font-size: 1.7em;
-    }
-    .exp-write-up{
-        font-size: 0.8rem;
-    } 
+@keyframes exp-ring {
+  from { transform: scale(0.8); opacity: 1; }
+  to   { transform: scale(1.8); opacity: 0; }
 }
 
-@media (max-width: 900px) {
-    .exp-parent{
-        width: 800px;
-        height: 200px;
-    }
-    .exp-title{
-        font-size: 1.6em;
-    }
-    .exp-write-up{
-        font-size: 0.7rem;
-    } 
-    .exp-section{        
-        gap: 150px;  
-    }
+/* ---------- Cards ---------- */
+.exp-card {
+  position: relative;
+  padding: 24px 28px;
+  background: #fff;
+  border: 3px solid #332b29;
+  border-radius: 16px;
+  box-shadow: 7px 7px 0 #332b29;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-@media (max-width: 800px) {
-    .exp-parent{
-        width: 700px;
-        height: 300px;
-    }
-    .exp-title{
-        font-size: 1.6em;
-    }
-    .exp-write-up{
-        font-size: 0.7rem;
-    } 
+
+.exp-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 #332b29;
 }
-@media (max-width: 717px) {
-    .exp-parent{
-        width: auto;
-        height: auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .exp-section{  
-        flex-direction: column;      
-        align-items: center; 
-        gap: 20px;
-    }
-    .exp-title{
-        margin-left: 0px;
-        font-size: 1.8em;
-    }
-    .exp-write-up{
-        margin-right: 7px;
-        margin-left: 7px;
-        font-size: 1em;
-    }
-    .exp-write-up h3{
-        font-size: 1.8em;
-    }
+
+/* Tape on the current job (same as the About window and hero polaroid) */
+.exp-tape {
+  position: absolute;
+  top: -16px;
+  right: 52px;
+  width: 110px;
+  height: 30px;
+  rotate: -4deg;
+  background: rgba(255, 216, 118, 0.85);
+  border: 2px dashed rgba(51, 43, 41, 0.3);
 }
-@media (max-width: 400px) {
-    .exp-title{
-        font-size: 1.6em;
-    }
-    .exp-write-up{
-        font-size: 0.8em;
-    }
-    .exp-write-up h3{
-        font-size: 1.6em;
-    }
+
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.exp-top h3 {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.exp-date {
+  font-weight: 600;
+  font-size: 0.98rem;
+  opacity: 0.7;
+}
+
+.exp-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: #8ed993;
+  border: 2px solid #332b29;
+  border-radius: 999px;
+}
+
+.exp-now i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #332b29;
+  animation: exp-blink 1.4s infinite;
+}
+
+@keyframes exp-blink {
+  50% { opacity: 0.2; }
+}
+
+.exp-company {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: var(--c);
+  border: 2px solid #332b29;
+  border-radius: 8px;
+}
+
+.exp-card ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.exp-tags span {
+  padding: 4px 11px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: #fff;
+  border: 2px solid #332b29;
+  border-radius: 999px;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 760px) {
+  .exp-parent {
+    width: calc(100% - 32px);
+    margin-bottom: 70px;
+  }
+  .exp-heading { font-size: 2.2rem; margin-bottom: 24px; }
+  .exp-timeline { padding-left: 38px; }
+  .exp-timeline::before { left: 9px; }
+  .exp-item::before { left: -38px; width: 20px; height: 20px; }
+  .exp-item.current::after { left: -40px; top: 22px; width: 24px; height: 24px; }
+  .exp-card { padding: 20px 18px; box-shadow: 5px 5px 0 #332b29; }
+  .exp-tape { width: 80px; height: 24px; right: 22px; top: -13px; }
+  .exp-top h3 { font-size: 1.3rem; }
+  .exp-card ul { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-item { transition: none; opacity: 1; transform: none; }
+  .exp-item.current::after, .exp-now i { animation: none; }
 }

@@ -21,6 +21,8 @@ nav {
 @media (min-width: 1041px) {
   .title h1 {
     white-space: nowrap;
+    /* Big on large screens, shrinking smoothly on smaller laptops so all five buttons always fit */
+    font-size: min(100px, calc(8vw - 34px));
   }
 }
 .title .word {
@@ -54,6 +56,7 @@ nav ul li:nth-child(1) { animation-delay: 0.3s; }
 nav ul li:nth-child(2) { animation-delay: 0.38s; }
 nav ul li:nth-child(3) { animation-delay: 0.46s; }
 nav ul li:nth-child(4) { animation-delay: 0.54s; }
+nav ul li:nth-child(5) { animation-delay: 0.62s; }
 @keyframes button-in {
   from { transform: translateY(-40px); opacity: 0; }
 }
@@ -82,6 +85,17 @@ nav ul li a:active {
   box-shadow: 0 0 0 #332b29;
 }
 
+/* Resume: yellow so it stands out from the other buttons */
+nav ul li.resume a {
+  background: #ffd876;
+}
+nav ul li.resume a:hover {
+  background: var(--c);
+}
+.resume-mobile {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .title .ch, nav ul li { animation: none; }
 }
@@ -90,9 +104,38 @@ html {
   scroll-behavior: smooth;
 }
 
-.icon{
+/* Hamburger: same white bordered button style as the links (phones/tablets only) */
+.icon {
   display: none;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 46px;
+  padding: 0 11px;
+  background: #fff;
+  border: 3px solid #332b29;
+  box-shadow: 4px 4px 0 #332b29;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
 }
+.icon:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #332b29;
+}
+.icon span {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: #332b29;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+.icon.open { background: #ffd876; }
+.icon.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.icon.open span:nth-child(2) { opacity: 0; }
+.icon.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
 /* Responsive Design */
 @media (max-width: 1263px) {
   .title {
@@ -100,9 +143,9 @@ html {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .options{
-    margin-left: 60px;
+    margin-left: 30px;
   }
   nav ul {
     gap: 10px;
@@ -118,7 +161,7 @@ html {
     font-size: 40px;
   }
   .options{
-    margin-left: 40px;
+    margin-left: 30px;
   }
   nav ul {
     gap: 8px;
@@ -128,66 +171,107 @@ html {
   }
 }
 
+/* Phones and tablets: name on one line, menu button on the right, menu drops down as a card */
 @media (max-width: 1040px) {
+  nav {
+    position: relative;
+    z-index: 30;
+    margin: 0;
+    height: auto;
+    padding: 22px 16px;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .title h1 {
+    margin: 0;
+    white-space: nowrap;
+    /* scales with the screen so the name always fits on one line next to the menu button */
+    font-size: clamp(22px, 6.4vw, 60px);
+    text-shadow: 3px 3px 0 #45496a, -1px -1px 0 #45496a, 1px -1px 0 #45496a,
+      -1px 1px 0 #45496a, 1px 1px 0 #45496a;
+  }
   .icon {
+    display: flex;
+  }
+  /* Resume moves out of the menu and sits next to the menu button */
+  .resume-mobile {
     display: block;
-    cursor: pointer;
+    margin-left: auto;
+    padding: 10px 14px;
+    font-family: "Cabin", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #332b29;
+    text-decoration: none;
+    background: #ffd876;
+    border: 3px solid #332b29;
+    box-shadow: 4px 4px 0 #332b29;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .title {
-    font-size: 33px;
+  .resume-mobile:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 #332b29;
   }
-  .options{
-    padding: none;
-    box-shadow: none;
-    margin-left: none;
-    border-style: none;
+  nav ul li.resume {
+    display: none;
+  }
 
+  .options {
     position: absolute;
-    right: 0;
-    top: 60px;
-    /* background-color: #fef7e5; */
-    background-color: #faf9f6;
-    width: 0px;
-    height: calc(100vh - 60px);
-    transition: all 0.3s ease-in-out; 
-    overflow: hidden;
-    margin-top: 60px;
-  }
-  .options.active {
-    width: 180px
+    top: calc(100% - 8px);
+    right: 16px;
+    margin: 0;
+    pointer-events: none;
   }
   .options ul {
-    display: flex;
     flex-direction: column;
-    gap: 0;
-    padding: 0 20px 0 14px;
+    gap: 12px;
+    min-width: 210px;
+    padding: 16px 20px 20px 16px;
+    background: #faf9f6;
+    border: 3px solid #332b29;
+    box-shadow: 6px 6px 0 #332b29;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+    transform-origin: top right;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.2, 1.3, 0.4, 1);
   }
-
+  .options.active {
+    pointer-events: auto;
+  }
+  .options.active ul {
+    opacity: 1;
+    transform: none;
+  }
   .options ul li {
-    margin-right: unset;
-    margin-top: 30px;
+    animation: none;
   }
-}
-@media (max-width: 600px) {
-  .title {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 500px) {
-  .title {
-    font-size: 26px;
+  .options ul li a {
+    font-size: 1.1rem;
+    padding: 12px 16px;
   }
 }
 
 @media (max-width: 400px) {
-  .title {
-    font-size: 24px;
+  nav {
+    padding: 18px 12px;
+    gap: 12px;
   }
-}
-
-@media (max-width: 370px) {
-  .title {
-    font-size: 22px;
+  .icon {
+    width: 44px;
+    height: 42px;
+    padding: 0 10px;
+  }
+  .resume-mobile {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+  .icon.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .options {
+    right: 12px;
+    left: 12px;
+  }
+  .options ul {
+    min-width: 0;
   }
 }

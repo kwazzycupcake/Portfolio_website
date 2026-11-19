@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Bright yellow thank-you band */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 30px;
+  background: #ffd876;
+  border-top: 3px solid #332b29;
+  color: #332b29;
+  font-family: "Cabin", sans-serif;
+}
+
+.footer-inner {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.footer-spark {
+  position: absolute;
+  top: 34px;
+  right: 8%;
+  width: 72px;
+  animation: footer-spin 10s linear infinite;
+}
+
+@keyframes footer-spin {
+  to { transform: rotate(360deg); }
+}
+
+.footer-title {
+  max-width: 760px;
+  margin: 0;
+  font-size: 3.2rem;
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+.footer-title span {
+  display: inline-block;
+  padding: 0 10px;
+  background: #fff;
+  border: 3px solid #332b29;
+  rotate: -2deg;
+}
+
+.footer-sub {
+  margin: 16px 0 28px;
+  font-size: 1.2rem;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+/* Link buttons */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a {
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #332b29;
+  text-decoration: none;
+  background: #fff;
+  border: 3px solid #332b29;
+  box-shadow: 4px 4px 0 #332b29;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+}
+
+.footer-links a:hover {
+  background: var(--c);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #332b29;
+}
+
+/* Live Bengaluru clock */
+.footer-clock {
+  padding: 12px 18px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: #fff;
+  border: 3px solid #332b29;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #332b29;
+}
+
+.footer-clock b {
+  display: block;
+  margin: 2px 0;
+  font-size: 1.7rem;
+}
+
+/* Bottom line */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 42px;
+  padding-top: 18px;
+  border-top: 3px solid #332b29;
+  font-size: 0.95rem;
+}
+
+.footer-top {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  font-family: "Cabin", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #332b29;
+  background: #fff;
+  border: 3px solid #332b29;
+  border-radius: 50%;
+  box-shadow: 4px 4px 0 #332b29;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+
+.footer-top:hover {
+  transform: translateY(-5px);
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 900px) {
+  .footer-title { font-size: 2.6rem; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .site-footer { padding: 46px 0 24px; }
+  .footer-inner { width: calc(100% - 32px); }
+  .footer-spark { width: 40px; top: 14px; right: 14px; }
+  .footer-title { font-size: 2.1rem; padding-right: 30px; }
+  .footer-sub { font-size: 1.05rem; margin-bottom: 22px; }
+  .footer-grid { flex-direction: column; align-items: flex-start; }
+  .footer-links a { padding: 8px 12px; font-size: 0.95rem; }
+  .footer-bottom { margin-top: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-spark { animation: none; }
+}

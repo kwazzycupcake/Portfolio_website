@@ -1,101 +1,234 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
 .project-parent {
-    margin-top: 80px;
-    margin-bottom: 70px;
-    background-color: #332b29;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-family: "Cabin", sans-serif;
-}
-  
-.proj-title h2 {
-    font-size: 3rem;
-    margin-bottom: 40px;
-    color: white;  
-}
-  
-.proj-list {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    color: #332b29;
-    font-size: 1.25em;
-    font-weight: 500;
-    line-height: 1.44;
-    margin-bottom: 80px;
-}
-  
-.proj {
-    width: 20%;
-    height: 440px;
-    margin-top: 10px;
-    padding: 20px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    text-align: left;
+  width: min(1100px, calc(100% - 40px));
+  margin: 40px auto 100px;
 }
 
-.proj h4{
-    font-style: italic;
+/* ---------- Light terminal window ---------- */
+.term {
+  position: relative;
+  background: #fffdf7;
+  border: 3px solid #332b29;
+  border-radius: 16px;
+  box-shadow: 10px 10px 0 #332b29;
+  color: #332b29;
+  font-family: "Cabin", sans-serif;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
-.proj:nth-child(1){
-    background-color: #e7baad;
+.term.visible {
+  opacity: 1;
+  transform: none;
 }
 
-.proj:nth-child(2){
-    background-color: #8bdfdd;
+.term-tape {
+  position: absolute;
+  top: -16px;
+  right: 60px;
+  z-index: 2;
+  width: 110px;
+  height: 30px;
+  rotate: -4deg;
+  background: rgba(255, 216, 118, 0.85);
+  border: 2px dashed rgba(51, 43, 41, 0.3);
 }
 
-.proj:nth-child(3){
-    background-color: #8ed993;
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #e7e2f7;
+  border-bottom: 3px solid #332b29;
+  border-radius: 13px 13px 0 0;
 }
 
-/* Responsive design */
-@media (max-width: 1200px) {
-    .proj {
-        width: 30%;
-    }
+.term-bar i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #332b29;
 }
+.term-bar i:nth-child(1) { background: #f28b82; }
+.term-bar i:nth-child(2) { background: #ffd876; }
+.term-bar i:nth-child(3) { background: #8ed993; }
+
+.term-bar span {
+  margin-left: 12px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.term-body {
+  padding: 36px 48px 40px;
+}
+
+.term-title {
+  margin: 0 0 24px;
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.term-hl {
+  background: linear-gradient(#e7baad, #e7baad) no-repeat 0 88% / 100% 34%;
+}
+
+/* ---------- Commands ---------- */
+.term-cmd {
+  margin: 0 0 18px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1.02rem;
+}
+
+.term-prompt {
+  color: #3f8f47;
+  font-weight: 700;
+}
+
+.term-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.1em;
+  vertical-align: -0.2em;
+  background: #332b29;
+  animation: term-blink 1s steps(1) infinite;
+}
+
+@keyframes term-blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Each project ("ls" output) ---------- */
+.term-proj {
+  margin: 0 0 28px;
+  padding: 4px 0 4px 22px;
+  border-left: 4px solid var(--c);
+  /* print one after another */
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(0.5s + var(--i) * 0.18s);
+}
+
+.term.visible .term-proj {
+  opacity: 1;
+  transform: none;
+}
+
+.term-proj h3 {
+  margin: 0 0 8px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1.3rem;
+}
+
+.term-proj h3 span {
+  background: linear-gradient(var(--c), var(--c)) no-repeat 0 88% / 100% 40%;
+}
+
+.term-proj p {
+  margin: 0 0 14px;
+  max-width: 860px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.term-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+.term-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.term-tags span {
+  padding: 3px 11px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: #fff;
+  border: 2px solid #332b29;
+  border-radius: 999px;
+}
+
+.term-link {
+  font-weight: 700;
+  color: #332b29;
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 3px solid var(--c);
+  transition: background-color 0.2s ease;
+}
+
+.term-link:hover {
+  background-color: var(--c);
+}
+
+/* ---------- Publication ---------- */
+.term-pub h4 {
+  margin: 0 0 8px;
+  max-width: 860px;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.term-venue {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 2px 10px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--c);
+  border: 2px solid #332b29;
+  border-radius: 8px;
+}
+
+.term-proj p.term-authors {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.term-authors b {
+  background: linear-gradient(var(--c), var(--c)) no-repeat 0 88% / 100% 40%;
+}
+
+/* ---------- Tablets ---------- */
 @media (max-width: 900px) {
-    .proj-list {
-        font-size: 1.17em;
-    }
-    /* .proj {
-        height: auto;
-        text-align: center;
-    } */
-    .proj-title h2 {
-        font-size: 2rem;
-    }
-}
-@media (max-width: 777px) {
-    .proj {
-        width: 60%;
-        height: auto;
-    }
-    .proj-list {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (max-width: 500px) {
-    .proj {
-        width: 60%;
-    }
-    .proj-list {
-        line-height: 1.2;
-    }
-}
-@media (max-width: 420px) {
-    .proj-list {
-        font-size: 1em;
-    }
-    .proj-title h2 {
-        font-size: 2rem;
-    }
+  .term-body { padding: 30px 32px 34px; }
+  .term-title { font-size: 2.5rem; }
 }
 
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .project-parent {
+    width: calc(100% - 32px);
+    margin: 30px auto 70px;
+  }
+  .term { box-shadow: 6px 6px 0 #332b29; }
+  .term-tape { width: 84px; height: 26px; right: 24px; top: -14px; }
+  .term-bar { padding: 12px 14px; gap: 8px; }
+  .term-bar i { width: 13px; height: 13px; }
+  .term-bar span { margin-left: 8px; font-size: 0.85rem; }
+  .term-body { padding: 26px 18px 30px; }
+  .term-title { font-size: 2.1rem; margin-bottom: 18px; }
+  .term-cmd { font-size: 0.85rem; }
+  .term-proj { padding-left: 14px; margin-bottom: 24px; }
+  .term-proj h3 { font-size: 1.05rem; }
+  .term-proj p { font-size: 1rem; }
+  .term-pub h4 { font-size: 1.1rem; }
+  .term-venue { font-size: 0.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term, .term-proj { transition: none; opacity: 1; transform: none; }
+  .term-cursor { animation: none; }
+}

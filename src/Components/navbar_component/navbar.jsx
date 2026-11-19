@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./navbar.css";
+import resume from "../hero_component/Resume_Himanshi.pdf";
 
 const NAME = "Himanshi Prakash";
 
@@ -54,11 +55,24 @@ const Navbar = () => {
           })}
         </h1>
       </div>
-      <div className="icon" onClick={handleShowNavbar} ref={iconRef}>
-        <i className="fa fa-bars"></i>
-      </div>
+      {/* Phones/tablets: Resume sits next to the menu button */}
+      <a className="resume-mobile" href={resume} target="_blank" rel="noopener noreferrer">
+        Resume
+      </a>
+      <button
+        className={`icon ${showNavbar ? "open" : ""}`}
+        onClick={handleShowNavbar}
+        ref={iconRef}
+        aria-label="Menu"
+        aria-expanded={showNavbar}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <div className={`options ${showNavbar ? "active" : ""}`} ref={menuRef}>
-        <ul>
+        {/* Tapping a link closes the phone menu */}
+        <ul onClick={() => setShowNavbar(false)}>
           <li style={{ "--c": "#e7baad" }}>
             <a href="#about">About</a>
           </li>
@@ -70,6 +84,9 @@ const Navbar = () => {
           </li>
           <li style={{ "--c": "#f8ab41" }}>
             <a href="#contact">Contact me</a>
+          </li>
+          <li className="resume" style={{ "--c": "#f8ab41" }}>
+            <a href={resume} target="_blank" rel="noopener noreferrer">Resume ↗</a>
           </li>
         </ul>
       </div>
