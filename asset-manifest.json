@@ -1,20 +1,18 @@
 {
   "files": {
-    "main.css": "/Portfolio_website/static/css/main.3942fe38.css",
-    "main.js": "/Portfolio_website/static/js/main.9dd42b35.js",
+    "main.css": "/Portfolio_website/static/css/main.f5c9c36c.css",
+    "main.js": "/Portfolio_website/static/js/main.022af6fb.js",
     "static/js/453.acca0757.chunk.js": "/Portfolio_website/static/js/453.acca0757.chunk.js",
-    "static/media/photo4.png": "/Portfolio_website/static/media/photo4.c8aee4c3e05216cbf65f.png",
-    "static/media/moksha.png": "/Portfolio_website/static/media/moksha.a7f51fc0acc25b18a9a7.png",
     "static/media/cake.png": "/Portfolio_website/static/media/cake.35a7963a0aa246f85042.png",
+    "static/media/himanshi.jpg": "/Portfolio_website/static/media/himanshi.70dea380dd0a0a87a6be.jpg",
     "static/media/Resume_Himanshi.pdf": "/Portfolio_website/static/media/Resume_Himanshi.d417a3c6a7d89babf46c.pdf",
-    "static/media/resume.pdf": "/Portfolio_website/static/media/resume.0c3dd0e098ad6b560101.pdf",
     "index.html": "/Portfolio_website/index.html",
-    "main.3942fe38.css.map": "/Portfolio_website/static/css/main.3942fe38.css.map",
-    "main.9dd42b35.js.map": "/Portfolio_website/static/js/main.9dd42b35.js.map",
+    "main.f5c9c36c.css.map": "/Portfolio_website/static/css/main.f5c9c36c.css.map",
+    "main.022af6fb.js.map": "/Portfolio_website/static/js/main.022af6fb.js.map",
     "453.acca0757.chunk.js.map": "/Portfolio_website/static/js/453.acca0757.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3942fe38.css",
-    "static/js/main.9dd42b35.js"
+    "static/css/main.f5c9c36c.css",
+    "static/js/main.022af6fb.js"
   ]
 }
