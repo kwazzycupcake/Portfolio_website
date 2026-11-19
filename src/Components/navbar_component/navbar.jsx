@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./navbar.css";
 
+const NAME = "Himanshi Prakash";
+
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const menuRef = useRef(null); // Reference to the options menu
@@ -33,23 +35,40 @@ const Navbar = () => {
   return (
     <nav>
       <div className="title">
-        <h1>Himanshi Prakash</h1>
+        <h1 aria-label={NAME}>
+          {/* Each letter is its own span so it can bounce in and hop on hover */}
+          {NAME.split(" ").map((word, w, words) => {
+            const offset = words.slice(0, w).join(" ").length + (w ? 1 : 0);
+            return (
+              <React.Fragment key={w}>
+                {w > 0 && " "}
+                <span className="word" aria-hidden="true">
+                  {[...word].map((ch, i) => (
+                    <span className="ch" style={{ "--i": offset + i }} key={i}>
+                      {ch}
+                    </span>
+                  ))}
+                </span>
+              </React.Fragment>
+            );
+          })}
+        </h1>
       </div>
       <div className="icon" onClick={handleShowNavbar} ref={iconRef}>
         <i className="fa fa-bars"></i>
       </div>
       <div className={`options ${showNavbar ? "active" : ""}`} ref={menuRef}>
         <ul>
-          <li>
+          <li style={{ "--c": "#e7baad" }}>
             <a href="#about">About</a>
           </li>
-          <li>
+          <li style={{ "--c": "#8ed993" }}>
             <a href="#skills">Skills</a>
           </li>
-          <li>
+          <li style={{ "--c": "#7ed0cf" }}>
             <a href="#projects">Projects</a>
           </li>
-          <li>
+          <li style={{ "--c": "#f8ab41" }}>
             <a href="#contact">Contact me</a>
           </li>
         </ul>

@@ -17,35 +17,74 @@ nav {
     cursor: pointer;
 }
 
-.options{
-    padding: 10px 7px 10px 0px;
-    border-style: solid;
-    box-shadow: 8px 8px #332b29;
+/* Name: letters bounce in on load and hop on hover */
+@media (min-width: 1041px) {
+  .title h1 {
+    white-space: nowrap;
+  }
 }
+.title .word {
+  white-space: nowrap;
+}
+.title .ch {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.2, 1.8, 0.4, 1);
+  animation: letter-in 0.7s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  animation-delay: calc(var(--i) * 35ms);
+}
+.title .ch:hover {
+  transform: translateY(-10px) rotate(-6deg);
+}
+@keyframes letter-in {
+  from { transform: translateY(-50px); opacity: 0; }
+}
+
 nav ul {
   display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
   list-style-type: none;
-  margin: 0 22px;
+  animation: button-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
 }
+nav ul li:nth-child(1) { animation-delay: 0.3s; }
+nav ul li:nth-child(2) { animation-delay: 0.38s; }
+nav ul li:nth-child(3) { animation-delay: 0.46s; }
+nav ul li:nth-child(4) { animation-delay: 0.54s; }
+@keyframes button-in {
+  from { transform: translateY(-40px); opacity: 0; }
+}
+
+/* Each link is its own bordered button; it lifts and takes its colour on hover, presses in on click */
 nav ul li a {
+  display: block;
+  padding: 11px 18px;
+  white-space: nowrap;
   text-decoration: none;
   color: #332b29;
   font-weight: 700;
   font-size: 1.2rem;
+  background: #fff;
+  border: 3px solid #332b29;
+  box-shadow: 5px 5px 0 #332b29;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
 }
-.options ul li a {
-  color: #332b29; 
-  transition: color 0.3s ease, transform 0.3s ease;
+nav ul li a:hover {
+  background: var(--c);
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #332b29;
+}
+nav ul li a:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 #332b29;
 }
 
-.options ul li:nth-child(1) a:hover { color: #e7baad; }
-.options ul li:nth-child(2) a:hover { color: #8ed993; }
-.options ul li:nth-child(3) a:hover { color: #7ed0cf; }
-.options ul li:nth-child(4) a:hover { color: #f8ab41; }
-.options ul li:nth-child(5) a:hover { color: #e7baad; }
+@media (prefers-reduced-motion: reduce) {
+  .title .ch, nav ul li { animation: none; }
+}
 
 html {
   scroll-behavior: smooth;
@@ -63,15 +102,14 @@ html {
 
 @media (max-width: 1200px) {
   .options{
-    padding: 8px 5px 8px 0px; 
-    box-shadow: 5px 5px #332b29; 
-    margin-left: 100px;
+    margin-left: 60px;
   }
-  nav ul li {
-    margin: 0 13px;
+  nav ul {
+    gap: 10px;
   }
   nav ul li a {
     font-size: 1.1rem;
+    padding: 10px 14px;
   }
 }
 
@@ -80,12 +118,13 @@ html {
     font-size: 40px;
   }
   .options{
-    padding: 5px 2px 5px 5px; 
-    box-shadow: 4px 4px #332b29; 
-    margin-left: 100px;
+    margin-left: 40px;
   }
-  nav ul li {
-    margin: 0 10px;
+  nav ul {
+    gap: 8px;
+  }
+  nav ul li a {
+    padding: 9px 12px;
   }
 }
 
@@ -120,6 +159,8 @@ html {
   .options ul {
     display: flex;
     flex-direction: column;
+    gap: 0;
+    padding: 0 20px 0 14px;
   }
 
   .options ul li {
