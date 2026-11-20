@@ -178,38 +178,51 @@ html {
     z-index: 30;
     margin: 0;
     height: auto;
-    padding: 22px 16px;
+    /* extra room on the right for the buttons' hard shadow */
+    padding: 22px 24px 22px 18px;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
   }
   .title h1 {
     margin: 0;
     white-space: nowrap;
-    /* scales with the screen so the name always fits on one line next to the menu button */
-    font-size: clamp(22px, 6.4vw, 60px);
+    /* shrinks with the screen so the name, Resume and menu always fit inside the margins */
+    font-size: clamp(18px, min(7vw, 11.4vw - 21px), 60px);
     text-shadow: 3px 3px 0 #45496a, -1px -1px 0 #45496a, 1px -1px 0 #45496a,
       -1px 1px 0 #45496a, 1px 1px 0 #45496a;
   }
   .icon {
     display: flex;
+    gap: 4px;
+    width: 40px;
+    height: 38px;
+    padding: 0 9px;
+    box-shadow: 3px 3px 0 #332b29;
   }
+  .icon:active { transform: translate(3px, 3px); }
+  .icon.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   /* Resume moves out of the menu and sits next to the menu button */
   .resume-mobile {
-    display: block;
+    /* same height as the menu button next to it */
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 38px;
     margin-left: auto;
-    padding: 10px 14px;
+    padding: 0 10px;
     font-family: "Cabin", sans-serif;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: #332b29;
     text-decoration: none;
     background: #ffd876;
     border: 3px solid #332b29;
-    box-shadow: 4px 4px 0 #332b29;
+    box-shadow: 3px 3px 0 #332b29;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .resume-mobile:active {
-    transform: translate(4px, 4px);
+    transform: translate(3px, 3px);
     box-shadow: 0 0 0 #332b29;
   }
   nav ul li.resume {
@@ -219,7 +232,7 @@ html {
   .options {
     position: absolute;
     top: calc(100% - 8px);
-    right: 16px;
+    right: 24px;
     margin: 0;
     pointer-events: none;
   }
@@ -254,22 +267,25 @@ html {
 
 @media (max-width: 400px) {
   nav {
-    padding: 18px 12px;
-    gap: 12px;
+    padding: 18px 20px 18px 14px;
+    gap: 10px;
+  }
+  .title h1 {
+    font-size: clamp(17px, 11.5vw - 19px, 26px);
   }
   .icon {
-    width: 44px;
-    height: 42px;
-    padding: 0 10px;
+    width: 38px;
+    height: 36px;
+    padding: 0 8px;
   }
   .resume-mobile {
-    padding: 8px 10px;
-    font-size: 0.9rem;
+    height: 36px;
+    padding: 0 9px;
+    font-size: 0.8rem;
   }
-  .icon.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .options {
-    right: 12px;
-    left: 12px;
+    right: 20px;
+    left: 14px;
   }
   .options ul {
     min-width: 0;
